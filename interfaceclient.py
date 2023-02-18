@@ -32,6 +32,14 @@ class interfaceClient(metaclass=ABCMeta):
     def editUser(self,name:str) ->str:
         pass
     @abstractmethod
-    def loadFiles(self,token:str,files:list,) ->str:
+    def loadFiles(self,token:str,files:list,) ->bool:
+        pass    
+    @abstractmethod
+    def serializeFiles(self,token:str,files:list,) ->list:
+        pass    
+    @abstractmethod
+    def sendFilesServer(self,token:str,idReq:str,fileSerilize:list) ->bool:
         pass
-    ""
+    @abstractmethod
+    def sendFilesServer(self,token:str,idReq:str) ->str:
+        pass
