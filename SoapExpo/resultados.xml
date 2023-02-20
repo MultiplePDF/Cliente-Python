@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap-env:Body>
+        <ns0:Add xmlns:ns0="http://tempuri.org/">
+            <ns0:a>1</ns0:a>
+            <ns0:b>2</ns0:b>
+        </ns0:Add>
+    </soap-env:Body>
+</soap-env:Envelope>
+
+-------------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope 
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <AddResponse xmlns="http://tempuri.org/">
+            <AddResult>3</AddResult>
+        </AddResponse>
+    </soap:Body>
+</soap:Envelope>
