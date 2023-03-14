@@ -14,9 +14,6 @@ class interfaceClient(metaclass=ABCMeta):
     def signIn(self,user:str,password:str) ->str:
         pass
     @abstractmethod
-    def authentication(self,token:str) ->bool:
-        pass
-    @abstractmethod
     def signUp(self,user:str,password:str,name:str,email:str) ->bool:
         pass
     @abstractmethod
