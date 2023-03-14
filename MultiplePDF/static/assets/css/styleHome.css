@@ -1,0 +1,96 @@
+/*HOME*/
+
+.text-1{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; /* semibold */
+    font-size: 40px;
+}
+
+.text-2{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500; /* medium */
+    font-size: 20px; 
+    color: #6F6767;
+}
+
+.row-md {
+    display: flex;
+    align-items: center;
+}
+  
+.col-img {
+    flex: 1;
+    text-align: center;
+}
+  
+.col-text {
+    flex: 1;
+    text-align: left;
+}
+
+.btn-start{
+    margin-top: 20px;
+    text-align: center;
+    line-height: 44px;
+    background-color: #FF7764;
+    color: #FBF3F3;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; /* semibold */
+    font-size: 20px; 
+    width: 202px;
+    height: 56px;
+}
+
+.btn-start:hover {
+    background-color: #5064CC; 
+    color: #FBF3F3; 
+}
+
+
+
+/*SIGN IN Y SIGN UP*/
+
+.align-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+.form-control {
+    border: none !important;
+}
+
+.btn-SignIn{
+    background-color:#FF7764 !important;
+    color: #FBF3F3 !important;
+    font-size: 16px;
+    height: 52px;
+    width: 391px;
+    
+}
+
+.btn-forgotPass{
+    font-size: 16px;
+    height: 10px;
+    width: 390px;
+    color: rgb(8,8,8);
+    text-align: right !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; /* semibold */;
+}
+
+.btn-nowSignUp{
+    font-size: 16px;
+    height: 52px;
+    width: 391px;
+    background: var(--bs-btn-disabled-color);
+    border-color: var(--bs-btn-disabled-color);
+    padding: 10px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+  }
