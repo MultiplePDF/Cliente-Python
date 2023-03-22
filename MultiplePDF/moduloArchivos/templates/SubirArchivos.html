@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subir archivos</title>
+</head>
+<body>
+    <h1>Subir archivos</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Subir</button>
+    </form>
+    <hr>
+    {% if mensaje %}
+    <p>{{ mensaje }}</p>
+{% endif %}
+</body>
+</html>
