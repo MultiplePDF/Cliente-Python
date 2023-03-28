@@ -143,7 +143,7 @@ button{
     {% block title %}Registrate{% endblock %}
 
 {% block content %}
-    <form action="" method="post">
+    <form action="{% url 'Login' %}" method="post">
         {% csrf_token %}
         <h3>Regístrate</h3>
         {{ form.as_p }}

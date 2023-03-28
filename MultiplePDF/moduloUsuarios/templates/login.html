@@ -140,7 +140,7 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form method="post">
+    <form action="{% url 'Registro' %}" method="post">
         {% csrf_token %}
         <h3>Iniciar Sesión</h3>
 
