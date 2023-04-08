@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from moduloUsuarios.models import User
 from .forms import SignUpForm
 from django.contrib.auth import login, logout, authenticate
+from zeep import Client
 
 # Create your views here.
 
@@ -56,4 +57,59 @@ def login(request):
     return render(request, 'login.html')
 def registro(request):
     return render(request, 'registrate.html')
+
+from django.shortcuts import render, redirect,reverse
+from django.contrib.auth import authenticate, login
+from zeep import Client
+from zeep.exceptions import Fault
+from django.contrib import messages
+from .forms import RegisterForm
+
+def registerMPDF(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        repeat_password = request.POST.get('repeat_password')
+
+        if password != repeat_password:
+            messages.error(request, 'Las contraseñas no coinciden')
+            return redirect(reverse('Registro2'))
+
+        try:
+            client = Client('http://ejemplo.com/mi_wsdl')
+            response = client.service.signUp(name, email, password)
+
+            if response == 'success':
+                messages.success(request, 'Registro exitoso')
+                return redirect(reverse('login2'))
+            else:
+                messages.error(request, 'Error en el registro')
+                return redirect(reverse('signup'))
+
+        except Fault as e:
+            messages.error(request, 'Error en el servidor: {}'.format(e.message))
+            return redirect('registrate2.html')
+
+    return render(request, 'registrate2.html')
+
+def loginMPDF(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        # Llamada al servicio web para autenticar al usuario
+        client = Client('http://localhost:8080/ws/countries.wsdl')
+        token = client.service.login(email, password)
+
+        if token:
+            # Si la autenticación es exitosa, guardar el token en la sesión
+            request.session['token'] = token
+            return redirect('dragDrop')
+        else:
+            # Si la autenticación falla, mostrar un mensaje de error en el formulario
+            error_message = 'Correo electrónico o contraseña incorrectos'
+            return render(request, 'login2.html', {'error_message': error_message})
+    else:
+        return render(request, 'login2.html')
 

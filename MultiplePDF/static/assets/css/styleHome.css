@@ -94,3 +94,6 @@
     display: flex;
     align-items: center;
   }
+.upload-box {
+  margin: 40px 0;
+}

@@ -7,6 +7,7 @@ from MultiplePDF import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('/descargas', views.descarga, name='descargas'),
-    path('myapp/', include('moduloArchivos.urls')),
-    path('myapp/', include('moduloUsuarios.urls'))
+    path('Archivos/', include('moduloArchivos.urls')),
+    path('Usuarios/', include('moduloUsuarios.urls')),
+    path('calculator/', views.calculate, name='calculadora')
 ]

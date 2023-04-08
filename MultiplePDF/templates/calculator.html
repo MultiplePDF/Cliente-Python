@@ -1,0 +1,15 @@
+
+<form method="post">
+    {% csrf_token %}
+    <label for="number1">Número 1:</label>
+    <input type="number" name="number1" id="number1" required>
+    <br>
+    <label for="number2">Número 2:</label>
+    <input type="number" name="number2" id="number2" required>
+    <br>
+    <input type="submit" value="Sumar">
+</form>
+
+{% if result %}
+    <p>Resultado: {{ result }}</p>
+{% endif %}
