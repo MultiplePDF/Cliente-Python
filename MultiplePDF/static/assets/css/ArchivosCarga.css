@@ -1,9 +1,88 @@
-.left-column {
-  float: left;
-  width: 50%;
+.container_divs {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	margin: 20px;
+	padding: 20px;
+	background-color: #f0f0f0;
 }
 
-.right-column {
-  float: right;
-  width: 50%;
+.form-container {
+	flex-basis: 48%;
+	margin-bottom: 20px;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-container p {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 18px;
+	color: #6F6767;
+	margin-bottom: 10px;
+}
+
+.form-container h1 {
+	margin-top: 0;
+	margin-bottom: 20px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 40px;
+}
+
+.form-container form {
+	margin-bottom: 20px;
+	border-bottom: 2px solid #ddd;
+}
+
+.form-container label {
+	display: block;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	margin-bottom: 10px;
+}
+
+.form-container input[type="file"],
+.form-container input[type="submit"] {
+	display: block;
+	margin-bottom: 20px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	color: #6F6767;
+}
+
+.form-container input[type="submit"] {
+	background-color: #fb7464;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.form-container input[type="submit"]:hover {
+	background-color: #fc896e;
+}
+
+.form-container-border {
+	border: 5px dashed #fb7464;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+.empty-container {
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.empty-container h1 {
+	margin-top: 0;
+	margin-bottom: 20px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 40px;
 }
