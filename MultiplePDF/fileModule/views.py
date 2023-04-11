@@ -6,16 +6,12 @@ import base64
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
-<<<<<<< HEAD:MultiplePDF/moduloArchivos/views.py
-from .forms import ArchivoForm
-from .models import Archivo
 from django.contrib.auth.decorators import login_required
 from zeep import Client
 import json
-=======
 from .forms import FileForm
 from .models import File
->>>>>>> 80d0bdfe0858e58007c6aa578ba57f579d39ba3e:MultiplePDF/fileModule/views.py
+
 
 
 def drag_and_drop(request):
