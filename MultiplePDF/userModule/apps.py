@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ModuloarchivosConfig(AppConfig):
+class userModuleSettings(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'moduloArchivos'
+    name = 'userModule'

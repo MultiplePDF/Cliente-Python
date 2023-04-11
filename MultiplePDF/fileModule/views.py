@@ -6,8 +6,8 @@ import base64
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
-from .forms import ArchivoForm
-from .models import Archivo
+from .forms import FileForm
+from .models import File
 
 
 def drag_and_drop(request):
@@ -20,23 +20,25 @@ def drag_and_drop(request):
 
 
 
-def subir_archivos(request):
+def uploadFiles(request):
     if request.method == 'POST':
-        form = ArchivoForm(request.POST, request.FILES)
+        form = FileForm(request.POST, request.FILES)
         if form.is_valid():
-            for archivo in request.FILES.getlist('archivos'):
-                nombre = archivo.name
-                contenido = base64.b64encode(archivo.read())
-                Archivo.objects.create(nombre=nombre, archivo_serializado=contenido)
-            archivos = Archivo.objects.all()
-            return render(request, 'archivos.html', {'archivos': archivos})
+            for file in request.FILES.getlist('files1'):
+
+                name = file.name
+
+                content = base64.b64encode(file.read())
+                File.objects.create(fileName=name, serializedFile=content)
+            files = File.objects.all()
+            return render(request, 'files.html', {'files1': files})
         else:
-            mensaje = 'Por favor, corrija los errores en el formulario.'
+            message = 'Por favor, corrija los errores en el formulario.'
     else:
-        form = ArchivoForm()
-        mensaje = ''
-    archivos = Archivo.objects.all()
-    return render(request, 'subirArchivos.html', {'form': form, 'archivos': archivos, 'mensaje': mensaje})
+        form = FileForm()
+        message = ''
+    files = File.objects.all()
+    return render(request, 'UploadFiles.html', {'form': form, 'files1': files, 'message': message})
 
 def upload_view(request):
     if request.method == 'POST' and request.FILES.getlist('file'):
@@ -56,17 +58,17 @@ def upload_view(request):
 def json_view(request):
     if request.method == 'POST':
         request.session.pop('file_data', None)
-        return JsonResponse({'message': 'Los archivos cargados se eliminaron correctamente.'})
+        return JsonResponse({'Mensaje': 'Los files1 cargados se eliminaron correctamente.'})
     file_data = request.session.get('file_data', None)
     if file_data is not None:
         return JsonResponse({'files': file_data})
-    return JsonResponse({'error': 'No se encontró ningún archivo cargado.'})
+    return JsonResponse({'Error': 'No se encontró ningún archivo cargado.'})
 
 def json_template_view(request):
     file_data = request.session.get('file_data', None)
     if file_data is not None:
         json_data = {'files': file_data}
     else:
-        json_data = {'error': 'No se encontró ningún archivo cargado.'}
-    return render(request, 'MostrarJson.html', {'json_data': json_data})
+        json_data = {'Error': 'No se encontró ningún archivo cargado.'}
+    return render(request, 'ShowJson.html', {'json_data': json_data})
 

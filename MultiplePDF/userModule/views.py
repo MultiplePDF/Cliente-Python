@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from moduloUsuarios.models import User
+from userModule.models import User
 from .forms import SignUpForm
 from django.contrib.auth import login, logout, authenticate
 from zeep import Client
@@ -89,9 +89,9 @@ def registerMPDF(request):
 
         except Fault as e:
             messages.error(request, 'Error en el servidor: {}'.format(e.message))
-            return redirect('registrate2.html')
+            return redirect('SignUp.html')
 
-    return render(request, 'registrate2.html')
+    return render(request, 'SignUp.html')
 
 def loginMPDF(request):
     if request.method == 'POST':
@@ -109,7 +109,7 @@ def loginMPDF(request):
         else:
             # Si la autenticación falla, mostrar un mensaje de error en el formulario
             error_message = 'Correo electrónico o contraseña incorrectos'
-            return render(request, 'login2.html', {'error_message': error_message})
+            return render(request, 'SignIn.html', {'error_message': error_message})
     else:
-        return render(request, 'login2.html')
+        return render(request, 'SignIn.html')
 
