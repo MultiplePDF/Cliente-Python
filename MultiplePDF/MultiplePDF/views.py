@@ -7,7 +7,7 @@ def home(request):
     return render(request, 'home.html')
 
 def descarga(request):
-    return render(request, 'Descarga.html')
+    return render(request, 'Download.html')
 
 def calculate(request):
     result = None

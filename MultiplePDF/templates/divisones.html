@@ -5,17 +5,13 @@
 			<h1>Subir Archivos</h1>
             <p>Solo se admiten archivos de Office con las siguientes extensiones:<br><br> .doc, .docx, .xls, .xlsx, .ppt, .pptx.</p>
             <div class="form-container-border">
-
 			    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
 				    {% csrf_token %}
                     <p class="upload-description">Seleccione o arrastre archivos aquí.</p>
 				    <input type="file" name="file" id="file" multiple>
 				    <input type="submit" value="Subir">
 			    </form>
-
-		</div>
-		<div class="empty-container">
-			<h1></h1>
 		</div>
 	</div>
+</div>
 
