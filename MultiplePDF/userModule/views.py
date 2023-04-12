@@ -99,7 +99,7 @@ def loginMPDF(request):
         password = request.POST.get('password')
 
         # Llamada al servicio web para autenticar al usuario
-        client = Client('http://localhost:8080/ws/countries.wsdl')
+        client = Client('http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl')
         token = client.service.login(email, password)
         print("token???", token)
 

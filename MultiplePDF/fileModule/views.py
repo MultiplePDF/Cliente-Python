@@ -46,7 +46,7 @@ def uploadFiles(request):
 
 
 def upload_view(request):
-    client = Client('http://localhost:8080/ws/countries.wsdl')
+    client = Client('http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl')
     access_token = request.session.get('token')
     print("Hay un token ???", access_token)
     if not access_token:
@@ -62,7 +62,7 @@ def upload_view(request):
                 'Size': round(file.size / 1024, 2),  # convertir a KB y redondear a 2 decimales
             })
         request.session['file_data'] = file_data
-        #print(client.service.uploadFiles(access_token,json.dumps(file_data)))
+        print(client.service.sendBatch(json.dumps(file_data),access_token))
         return JsonResponse({'files': file_data})
     return render(request, 'drag_and_drop.html')
 
