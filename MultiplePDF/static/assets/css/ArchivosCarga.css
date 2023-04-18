@@ -32,16 +32,14 @@
 	font-size: 40px;
 }
 
-.form-container form {
-	margin-bottom: 20px;
-	border-bottom: 2px solid #ddd;
-}
 
 .form-container label {
 	display: block;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
 	margin-bottom: 10px;
+
+
 }
 
 .form-container input[type="file"],
@@ -70,11 +68,11 @@
 
 
 .form-container input[type="submit"]:hover {
-	background-color: #fc896e;
+	background-color: #5064CC;
 }
 
 .form-container-border {
-	border: 5px dashed #a3a6c7;
+	border: 4px dashed #a3a6c7;
 	padding: 20px;
 	border-radius: 5px;
 }

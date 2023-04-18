@@ -9,8 +9,15 @@
 			    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
                      <div class="form-container-border">
 				    {% csrf_token %}
+
                     <p class="upload-description">Seleccione o arrastre archivos aquí.</p>
 				    <input type="file" name="file" id="file" multiple>
+                          <style>
+                            input[type="file"] {
+                             display: block;
+                                margin: 0 auto}
+
+                            </style>
 
                      </div>
                     <h1></h1>
