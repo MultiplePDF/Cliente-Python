@@ -2,17 +2,30 @@
 <link rel="stylesheet" type="text/css" href="{% static 'assets\css\ArchivosCarga.css' %}">
 <div class="container_divs">
 		<div class="form-container">
-			<center><h4>Subir Archivos</h4></center>
+			<h1>Subir Archivos</h1>
             <p>Solo se admiten archivos de Office con las siguientes extensiones:<br><br> .doc, .docx, .xls, .xlsx, .ppt, .pptx.</p>
 
-			    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
-				    {% csrf_token %}
-                        <p class="upload-description">Seleccione o arrastre archivos aquí.</p>
-                        <input type="file" name="file" id="file" multiple>
 
-				    <input type="submit" value="Subir">
+			    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+                     <div class="form-container-border">
+				    {% csrf_token %}
+                    <p class="upload-description">Seleccione o arrastre archivos aquí.</p>
+				    <input type="file" name="file" id="file" multiple>
+
+                     </div>
+                    <h1></h1>
+                    <h1></h1>
+                    <h1></h1>
+                    <h1></h1>
+                    <div style="text-align: center;">
+                    <input type="submit" value="Subir" style="position: absolute;left: 18%;" >
+                        </div>
 			    </form>
 
-	</div>
-</div>
 
+		<div class="empty-container">
+			<h1></h1>
+		</div>
+
+        </div>
+     </div>
