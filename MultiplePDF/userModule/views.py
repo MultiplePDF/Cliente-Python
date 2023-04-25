@@ -100,7 +100,8 @@ def loginMPDF(request):
 
         # Llamada al servicio web para autenticar al usuario
         client = Client('http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl')
-        token = client.service.login(email, password)
+        respuesta = client.service.login(email, password)
+        token=respuesta['token']
         print("token???", token)
 
         if token:
@@ -113,6 +114,7 @@ def loginMPDF(request):
             return render(request, 'SignIn.html', {'error_message': error_message})
     else:
         return render(request, 'SignIn.html')
+    print("dañado")
 
 def logout_view(request):
     if 'token' in request.session:

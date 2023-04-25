@@ -52,16 +52,17 @@
                                 {% csrf_token %}
                                 <div class="mb-3">
                                     <label class="form-label" style="margin-right: 340px;margin-left: 6px;width: 150px;text-align: left;">Correo electrónico</label>
-                                    <input class="form-control" type="email" name="email" placeholder="" style="width: 391px;height: 50px;text-align: center;">
+                                    <input class="form-control" type="email" name="email" placeholder="" style="width: 430px;height: 50px;text-align: center;">
                                 </div>
                                 <label class="form-label" style="margin-left: 0px;margin-right: 340px;">Contraseña</label>
                                 <div class="mb-3">
-                                    <input class="form-control" type="password" name="password" placeholder="" style="width: 391px;height: 50px;text-align: center;">
+                                    <input class="form-control" type="password" name="password" placeholder="" style="width: 430px;height: 50px;text-align: center;">
                                 </div>
-                                <button class="btn btn-primary d-block w-100" type="submit" style="font-size: 16px;height: 52px;width: 391px;">INICIAR SESIÓN</button>
-                                <button class="btn btn-primary d-block w-100" type="submit" style="font-size: 16px;height: 52px;width: 391px;background: var(--bs-btn-disabled-color);border-color: var(--bs-btn-disabled-color);padding: 10px;">
+
+                                <button class="btn btn-primary d-block w-100" type="submit" style="font-size: 16px;height: 50px;width: 200px;background: var(--bs-btn-disabled-color);border-color: var(--bs-btn-disabled-color);padding: 10px;" onmouseover="this.style.backgroundColor='#5064CC';" onmouseout="this.style.backgroundColor='#0010FF';">INICIAR SESIÓN</button>
+
                                     <span style="color: rgb(33, 37, 41);">¿No tienes una cuenta?</span><br><span style="color: rgb(33, 37, 41);">Registrate</span><br><br>
-                                </button>
+
                                 <span style="text-align: right;"></span>
                                 <p class="text-muted"></p>
                             </form>
@@ -70,7 +71,7 @@
                 </div>
             </section>
         </div>
-        <div class="col-md-6"><img src ="{% static 'assets/img/Tablet_login-pana.svg'%}" style="height: 400px;padding: 0px;margin: 0px;margin-top: 50px;"></div>
+        <div class="col-md-6"><img src ="{% static 'assets/img/loginimage.svg'%}" style="height: 400px;padding: 0px;margin: 0px;margin-top: 50px;"></div>
         </div>
         <footer class="text-center py-4">
         <div class="container">
@@ -107,5 +108,6 @@
         </div>
     </footer>
     <script src="{% static 'assets\bootstrap/js/bootstrap.min.js' %}"></script>
+    </div>
 </body>
 </html>
