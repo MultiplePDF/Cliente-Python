@@ -11,6 +11,7 @@ from zeep import Client
 import json
 from .forms import FileForm
 from .models import File
+import hashlib
 
 
 
@@ -55,11 +56,13 @@ def upload_view(request):
         files = request.FILES.getlist('file')
         file_data = []
         for i, file in enumerate(files):
+            md5_hash = hashlib.md5(file.read()).hexdigest()
             file_data.append({
                 'ID': i + 1,
                 'NombreDelDocumento': file.name,
                 'Contenido': base64.b64encode(file.read()).decode(),
                 'Size': round(file.size / 1024, 2),  # convertir a KB y redondear a 2 decimales
+                'MD5': md5_hash
             })
         request.session['file_data'] = file_data
         print(client.service.sendBatch(json.dumps(file_data),access_token))
