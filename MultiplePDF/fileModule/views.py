@@ -1,3 +1,5 @@
+import hashlib
+
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
@@ -48,21 +50,27 @@ def uploadFiles(request):
 def upload_view(request):
     client = Client('http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl')
     access_token = request.session.get('token')
-    print("Hay un token ???", access_token)
+    #print("Hay un token ???", access_token)
     if not access_token:
         return redirect('Login2')
     if request.method == 'POST' and request.FILES.getlist('file'):
         files = request.FILES.getlist('file')
         file_data = []
         for i, file in enumerate(files):
+            archivo = file.read()
+            #content = base64.b64encode().decode()
+            sha256 = hashlib.sha256(archivo).hexdigest()
+            print(file.name)
             file_data.append({
                 'ID': i + 1,
                 'NombreDelDocumento': file.name,
-                'Contenido': base64.b64encode(file.read()).decode(),
+                'Contenido': base64.b64encode(archivo).decode(),
                 'Size': round(file.size / 1024, 2),  # convertir a KB y redondear a 2 decimales
+                'checksum' : sha256
             })
         request.session['file_data'] = file_data
-        print(client.service.sendBatch(json.dumps(file_data),access_token))
+        print(client.service.sendBatch(json.dumps(file_data,ensure_ascii=False),access_token))
+        #print(json.dumps(file_data,ensure_ascii=False))
         return JsonResponse({'files': file_data})
     return render(request, 'drag_and_drop.html')
 
