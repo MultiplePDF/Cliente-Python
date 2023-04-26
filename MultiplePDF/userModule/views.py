@@ -72,24 +72,25 @@ def registerMPDF(request):
         password = request.POST.get('password')
         repeat_password = request.POST.get('repeat_password')
 
+        #print(name,email,password,repeat_password)
+
         if password != repeat_password:
             messages.error(request, 'Las contraseñas no coinciden')
-            return redirect(reverse('Registro2'))
+            return redirect(reverse('SignUp'))
 
-        try:
-            client = Client('http://ejemplo.com/mi_wsdl')
-            response = client.service.signUp(name, email, password)
 
-            if response == 'success':
-                messages.success(request, 'Registro exitoso')
-                return redirect(reverse('login2'))
-            else:
-                messages.error(request, 'Error en el registro')
-                return redirect(reverse('signup'))
+        client = Client('http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl')
+        response = client.service.register(name, email, password, repeat_password)
+        print(response)
+        if response['successful'] == True:
+            request.session['token'] = response['token']
+            messages.success(request, 'Registro exitoso')
+            return redirect(reverse('upload'))
+        else:
+            messages.error(request, 'Error en el registro')
+            return redirect(reverse('SignUp'))
 
-        except Fault as e:
-            messages.error(request, 'Error en el servidor: {}'.format(e.message))
-            return redirect('SignUp.html')
+
 
     return render(request, 'SignUp.html')
 
@@ -114,7 +115,7 @@ def loginMPDF(request):
             return render(request, 'SignIn.html', {'error_message': error_message})
     else:
         return render(request, 'SignIn.html')
-    print("dañado")
+
 
 def logout_view(request):
     if 'token' in request.session:

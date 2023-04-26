@@ -52,7 +52,7 @@ def upload_view(request):
     access_token = request.session.get('token')
     #print("Hay un token ???", access_token)
     if not access_token:
-        return redirect('Login2')
+        return redirect('SignIn')
     if request.method == 'POST' and request.FILES.getlist('file'):
         files = request.FILES.getlist('file')
         file_data = []
@@ -71,6 +71,8 @@ def upload_view(request):
         request.session['file_data'] = file_data
         print(client.service.sendBatch(json.dumps(file_data,ensure_ascii=False),access_token))
         #print(json.dumps(file_data,ensure_ascii=False))
+        #with open('datos.txt', 'w') as f:
+            #f.write(json.dumps(file_data,ensure_ascii=False))
         return JsonResponse({'files': file_data})
     return render(request, 'drag_and_drop.html')
 
