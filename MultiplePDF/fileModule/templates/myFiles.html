@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Mis Archivos
+{% endblock %}
+
+{% block content %}
+<!-- Aquí va el contenido específico de la página de contacto -->
+    <table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Fecha</th>
+      <th># Archivos</th>
+      <th>Vigencia</th>
+      <th>Descargar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in lista_de_diccionarios %}
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.numberFiles}}</td>
+        <td>{{ item.expirationDate }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

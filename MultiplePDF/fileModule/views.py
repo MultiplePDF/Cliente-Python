@@ -93,5 +93,37 @@ def json_template_view(request):
         json_data = {'Error': 'No se encontró ningún archivo cargado.'}
     return render(request, 'ShowJson.html', {'json_data': json_data})
 
+def myfiles(request):
+    # Verificar si el token de sesión está presente
+    if 'token' not in request.session:
+        # Si no hay un token de sesión, redirigir a la página SignIn
+        return redirect('SignIn')
+    # Si hay un token de sesión, obtener el valor
+    token = request.session['token']
+    # Crear una instancia de Zeep para acceder al servidor WSDL
+    wsdl_url = 'http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl'
+    client = Client(wsdl=wsdl_url)
+    # Llamar al método getBatchDetails del servidor WSDL utilizando el token como parámetro
+    response = client.service.getBatchDetails(token)
+    #print(response)
+
+    # Obtener los detalles
+    batch_details = response['batchesList']
+    batches = json.loads(batch_details)
+    print(batches) #lotes[0]['files'][0]['fileName']
+    data_lotes = []
+    for i, d in enumerate(batches):
+        dict = {
+            'id': i + 1,
+            'date': d['createdAt'],
+            'numberFiles': d['numberFiles'],
+            'expirationDate': d['validity'],
+        }
+        data_lotes.append(dict)
+    print(data_lotes)
+
+    # Renderizar la plantilla myfiles.html y pasar los detalles del lote de archivos PDF como contexto
+    return render(request, 'myfiles.html',{'lotes': data_lotes})
+
 
 
