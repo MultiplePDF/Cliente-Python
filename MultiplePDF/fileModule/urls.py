@@ -8,6 +8,7 @@ urlpatterns = [
     path('Upload/', views.upload_view, name='upload'),
     path('Json/', views.json_view, name='json'),
     path('Json/template/', views.json_template_view, name='json_template'),
-    path('myfiles/', views.myfiles, name='my_files')
+    path('myfiles/', views.myfiles, name='my_files'),
+    path('UploadUrls/', views.upload_view_urls, name='updload_urls')
 
 ]

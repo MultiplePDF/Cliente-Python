@@ -1,7 +1,8 @@
 {% load  static %}
-<link rel="stylesheet" type="text/css" href="{% static 'assets\css\ArchivosCarga.css' %}">
-<div class="container_divs">
-		<div class="form-container">
+{% comment %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets\css\style2.css' %}">
+<div class="container_jc">
+		<div class="column">
 			<h1>Subir Archivos</h1>
             <p>Solo se admiten archivos de Office con las siguientes extensiones:<br><br> .doc, .docx, .xls, .xlsx, .ppt, .pptx.</p>
 
@@ -32,10 +33,68 @@
                         </div>
 			    </form>
 
-
-		<div class="empty-container">
-			<h1></h1>
-		</div>
+        </div>
+		<div class="column">
+			<h1>Subir Archivos</h1>
+            <p>Solo se admiten archivos de Office con las siguientes extensiones:<br><br> .doc, .docx, .xls, .xlsx, .ppt, .pptx.</p>
+			    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+                     <div class="form-container-border">
+				    {% csrf_token %}
+                    <center><p class="upload-description">Seleccione o arrastre archivos aquí.</p></center>
+                         <h1></h1>
+                         <h1></h1>
+				    <input type="file" name="file" id="file" multiple>
+                          <style>
+                            input[type="file"] {
+                             display: block;
+                                margin: 0 auto}
+                            </style>
+                     </div>
+                    <h1></h1>
+                    <h1></h1>
+                    <h1></h1>
+                    <h1></h1>
+                    <div style="text-align: center;">
+                    <input type="submit" value="Subir" style="position: absolute;left: 18%;" >
+                        </div>
+			    </form>
 
         </div>
-     </div>
+</div>
+{% endcomment %}
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{% static 'assets/css/style2.css' %}">
+</head>
+<body>
+	<div class="container_jc">
+		<div class="column">
+			<h1>Subir Archivos</h1>
+            <p>Solo se admiten archivos de Office con las siguientes extensiones:<br><br> .doc, .docx, .xls, .xlsx, .ppt, .pptx.</p>
+            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-container-border">
+                    <center><p class="upload-description">Seleccione o arrastre archivos aquí.</p></center>
+                    <center><input type="file" name="file" id="file" multiple></center>
+                </div>
+                <div class="button-container">
+                    <center><input type="submit" value="Subir"></center>
+                </div>
+            </form>
+        </div>
+		<div class="column">
+			<h1>Subir URLs</h1>
+            <p>Copia las URLS de las páginas que quieras convertir:<br><br> separar cada url por una coma ( , )</p>
+            <form action="{% url 'updload_urls' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <textarea name="urls" id="urls" placeholder="Ingrese sus URLs aquí." style="width: 90%; height: 135px; overflow: auto;"></textarea>
+
+                </div>
+                <div class="button-container">
+                    <center><input type="submit" value="Subir"></center>
+                </div>
+            </form>
+        </div>
+	</div>
+</body>
