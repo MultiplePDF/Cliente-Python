@@ -7,6 +7,8 @@
     <title>Untitled</title>
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'assets/css/Navbar-Right-Links-icons.css'%}">
+     <link href="https://fonts.googleapis.com/css?family=Montserrat:medium,semibold&display=swap" rel="stylesheet">
+
 </head>
 <!doctype html>
 <html lang="en">
@@ -61,20 +63,20 @@
                                 <form class="text-center" method="post">
                                   {% csrf_token %}
                                   <label class="form-label" style="margin-right: 288px;margin-left: 0px;">Nombre y apellido</label>
-                                  <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="" style="width: 391px;height: 50px;text-align: center;"></div>
+                                  <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="" style="width: 426px;height: 50px;text-align: center;"></div>
                                   <label class="form-label" style="margin-right: 288px;margin-left: 0px;">Correo electrónico</label>
-                                  <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="" style="width: 391px;height: 50px;text-align: center;"></div>
+                                  <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="" style="width: 426px;height: 50px;text-align: center;"></div>
                                   <label class="form-label" style="margin-right: 340px;margin-left: 0px;">Contraseña</label>
-                                  <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="" style="width: 391px;height: 50px;text-align: center;"></div>
+                                  <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="" style="width: 426px;height: 50px;text-align: center;"></div>
                                   <label class="form-label" style="margin-right: 340px;margin-left: 0px;width: 150px;">Repetir Contraseña</label>
-                                  <div class="mb-3"><input class="form-control" type="password" name="repeat_password" placeholder="" style="width: 391px;height: 50px;text-align: center;"></div>
+                                  <div class="mb-3"><input class="form-control" type="password" name="repeat_password" placeholder="" style="width: 426px;height: 50px;text-align: center;"></div>
                                   <div class="mb-3"></div>
-                                  <button class="btn btn-primary d-block w-100" type="submit" style="font-size: 16px;height: 52px;width: 391px;">Registrarse</button>
-                                  <button class="btn btn-primary d-block w-100" type="submit" style="font-size: 16px;height: 52px;width: 391px;background: var(--bs-btn-disabled-color);border-color: var(--bs-btn-disabled-color);padding: 10px;">
-                                    <span style="color: rgb(33, 37, 41);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ¿Ya tienes una cuenta?&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Inicia&nbsp;</span>
-                                    <span style="color: rgb(33, 37, 41);">sesión</span>
-                                  </button>
-                                  <span style="text-align: right;"></span>
+
+                                  <button class="btn btn-primary d-block w-100" type="submit" style="font-size: 16px;height: 50px;width: 200px;background: var(--bs-btn-disabled-color);border-color: var(--bs-btn-disabled-color);padding: 10px; opacity: 1" onmouseout="this.style.backgroundColor='#0010FF';" onmouseover="this.style.backgroundColor='#5064CC';">REGISTRARSE</button>
+                                        <span style="color: rgb(33, 37, 41);">¿Ya tienes una cuenta?&nbsp;</span><br>
+                                        <label><a href="{% url 'SignIn' %}">Iniciar Sesión</a></label>
+
+                                        <span style="text-align: right;"></span>
                                   <p class="text-muted"></p>
                                 </form>
                             </div>
@@ -82,7 +84,7 @@
                     </div>
                 </section>
             </div>
-            <div class="col-md-6"><img width="422" height="474" src="{% static 'assets/img/Mobile_login-pana.svg'%}"></div>
+            <div class="col-md-6"><img width="450" height="700" src="{% static 'assets/img/signUp.svg'%}"></div>
         </div>
     </div>
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js'%}"></script>
