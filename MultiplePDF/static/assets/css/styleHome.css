@@ -83,13 +83,13 @@
 }
 
 .btn-nowSignUp{
+    background-color:#0010FF !important;
+    color: #FBF3F3 !important;
     font-size: 16px;
     height: 52px;
     width: 391px;
-    background: var(--bs-btn-disabled-color);
-    border-color: var(--bs-btn-disabled-color);
-    padding: 10px;
 }
+
 
 .form-group {
     display: flex;
