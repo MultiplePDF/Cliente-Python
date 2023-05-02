@@ -9,6 +9,8 @@ urlpatterns = [
     path('Json/', views.json_view, name='json'),
     path('Json/template/', views.json_template_view, name='json_template'),
     path('myfiles/', views.myfiles, name='my_files'),
-    path('UploadUrls/', views.upload_view_urls, name='updload_urls')
+    path('UploadUrls/', views.upload_view_urls, name='updload_urls'),
+    path('Details/<str:id_batch>/', views.batch_details, name='batch_details')
+    #path('download/', views.download, name='download')
 
 ]

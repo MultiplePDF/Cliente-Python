@@ -71,13 +71,18 @@ def upload_view(request):
                 'size': round(file.size / 1024, 2),  # convertir a KB y redondear a 2 decimales
                 'checksum' : sha256
             })
-        request.session['file_data'] = file_data
-        print(client.service.sendBatch(json.dumps(file_data,ensure_ascii=False),access_token))
-        #print(json.dumps(file_data,ensure_ascii=False))
-        #with open('datos.txt', 'w') as f:
-            #f.write(json.dumps(file_data,ensure_ascii=False))
-        return JsonResponse({'files': file_data})
-    return render(request, 'drag_and_drop.html')
+        #request.session['file_data'] = file_data
+        response = client.service.sendBatch(json.dumps(file_data,ensure_ascii=False),access_token)
+        print(response)
+        linkDownload = response['downloadPath']
+        print(linkDownload)
+        if response['successful']:
+            return render(request, 'Downloads.html', {'linkDownload': linkDownload})
+        else:
+            return JsonResponse({'error': 'Error al enviar el batch'})
+
+
+    return render(request, 'drag_and_drop.html',)
 
 def json_view(request):
     if request.method == 'POST':
@@ -97,41 +102,36 @@ def json_template_view(request):
     return render(request, 'ShowJson.html', {'json_data': json_data})
 
 def myfiles(request):
-    # Verificar si el token de sesión está presente
-    if 'token' not in request.session:
-        # Si no hay un token de sesión, redirigir a la página SignIn
+    access_token = request.session.get('token')
+    print("Hay un token ???", access_token)
+    if not access_token:
         return redirect('SignIn')
-    # Si hay un token de sesión, obtener el valor
-    token = request.session['token']
     # Crear una instancia de Zeep para acceder al servidor WSDL
     wsdl_url = 'http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl'
     client = Client(wsdl=wsdl_url)
     # Llamar al método getBatchDetails del servidor WSDL utilizando el token como parámetro
-    response = client.service.getBatchDetails(token)
+    response = client.service.getBatchDetails(access_token)
     #print(response)
-
     # Obtener los detalles
     batch_details = response['batchesList']
     batches = json.loads(batch_details)
-    print(batches) #lotes[0]['files'][0]['fileName']
-    data_lotes = []
-    for i, d in enumerate(batches):
-        dict = {
-            'id': i + 1,
-            'date': d['createdAt'],
-            'numberFiles': d['numberFiles'],
-            'expirationDate': d['validity'],
-        }
-        data_lotes.append(dict)
-    print(data_lotes)
+    #print(batches) #lotes[0]['files'][0]['fileName']
+    data_lotes_details = [{'ID_Batch': item['_id'], 'Files': item['files']} for item in batches]
+    request.session['data_lotes_details'] = data_lotes_details
+    data_lotes = [{'id': i + 1, 'date': batch['createdAt'], 'numberFiles': batch['numberFiles'],
+                   'expirationDate': batch['validity'], 'ID_Batch': batch['_id']} for i, batch in enumerate(batches)]
+    #print(data_lotes)
+    #print("*************************************")
+    #print(data_lotes_details)
+    #print(data_lotes)
 
     # Renderizar la plantilla myfiles.html y pasar los detalles del lote de archivos PDF como contexto
-    return render(request, 'myfiles.html',{'data': json.loads(json.dumps(data_lotes)),'batches': batches})
+    return render(request, 'myfiles.html',{'data': json.loads(json.dumps(data_lotes)),'batches': data_lotes_details})
 
 def upload_view_urls(request):
     client = Client('http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl')
     access_token = request.session.get('token')
-    print("Hay un token ???", access_token)
+    #print("Hay un token ???", access_token)
     if not access_token:
         return redirect('SignIn')
     if request.method == 'POST':
@@ -151,11 +151,33 @@ def upload_view_urls(request):
                 'checksum': ""
             })
 
-        print(client.service.sendBatch(json.dumps(file_data_urls, ensure_ascii=False), access_token))
-
-        return HttpResponse(str(file_data_urls))
+        response = client.service.sendBatch(json.dumps(file_data_urls, ensure_ascii=False), access_token)
+        #print(response)
+        linkDownload = response['downloadPath']
+        #print(linkDownload)
+        if response['successful']:
+            return render(request, 'Downloads.html', {'linkDownload': linkDownload})
+        else:
+            return JsonResponse({'error': 'Error al enviar el batch'})
     else:
         return HttpResponse('Método no permitido')
+
+
+def batch_details(request, id_batch):
+    # Obtener los detalles del lote de la sesión
+    data_lotes_details = request.session.get('data_lotes_details')
+    # Buscar el lote con el ID especificado
+    batch = next((item for item in data_lotes_details if item['ID_Batch'] == id_batch), None)
+    if batch:
+        # Si se encontró el lote, obtener los archivos y pasarlos como contexto a la plantilla
+        files = batch['Files']
+        return render(request, 'myFilesDetails.html', {'files': files})
+    else:
+        # Si no se encontró el lote, mostrar un mensaje de error
+        message = f"No se encontró ningún lote con el ID {id_batch}."
+        return render(request, 'myFilesDetails.html', {'message': message})
+
+
 
 
 

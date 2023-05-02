@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load  static %}
+
+
+{% block title %}
+Descargar
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" style="text-align: center;">
+                <h1 style="text-align: center;">¡Listo!</h1>
+                <p style="text-align: center;">Tus archivos han sido <br>transformados.&nbsp;<br>Descárgalos aquí</p>
+                <a href="{{ linkDownload }}" class="btn btn-primary">Descargar</a>
+            </div>
+            <div class="col-md-8"><img src="{% static 'assets/img/image.png'%}" style="width: 655px;height: 566px;text-align: justify;"></div>
+        </div>
+    </div>
+
+
+{% endblock %}

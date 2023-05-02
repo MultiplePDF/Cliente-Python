@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Detalles Archivos
+{% endblock %}
+
+{% block content %}
+  <h1>Archivos del lote {{ ID_Batch }}</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Tamaño</th>
+        <th>Descargar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for file in files %}
+        <tr>
+          <td>{{ file.fileName }}</td>
+          <td>{{ file.size }} KB</td>
+          <td><a href="{{ file.filePath }}" class="btn btn-primary">Descargar</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+{

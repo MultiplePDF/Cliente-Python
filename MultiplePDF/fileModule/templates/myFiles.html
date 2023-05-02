@@ -22,7 +22,7 @@ Mis Archivos
 					<td>{{ item.date }}</td>
 					<td>{{ item.numberFiles }}</td>
 					<td>{{ item.expirationDate }}</td>
-                    <td><a href="#" class="btn btn-primary">Descargar</a></td>
+                    <td><a href="{% url 'batch_details' id_batch=item.ID_Batch %}" class="btn btn-primary">Detalles</a></td>
 				</tr>
 			{% endfor %}
 		</tbody>
