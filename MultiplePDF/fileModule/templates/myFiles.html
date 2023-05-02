@@ -7,24 +7,24 @@ Mis Archivos
 {% block content %}
 <!-- Aquí va el contenido específico de la página de contacto -->
     <table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Fecha</th>
-      <th># Archivos</th>
-      <th>Vigencia</th>
-      <th>Descargar</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for item in lista_de_diccionarios %}
-      <tr>
-        <td>{{ item.id }}</td>
-        <td>{{ item.date }}</td>
-        <td>{{ item.numberFiles}}</td>
-        <td>{{ item.expirationDate }}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Fecha</th>
+				<th>Número de archivos</th>
+				<th>Fecha de expiración</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in data %}
+				<tr>
+					<td>{{ item.id }}</td>
+					<td>{{ item.date }}</td>
+					<td>{{ item.numberFiles }}</td>
+					<td>{{ item.expirationDate }}</td>
+                    <td><a href="#" class="btn btn-primary">Descargar</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

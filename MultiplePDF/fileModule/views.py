@@ -68,7 +68,7 @@ def upload_view(request):
                 'base64': base64.b64encode(archivo).decode(),
                 'fileName': file.name,
                 'fileExtension': file_extension,
-                'Size': round(file.size / 1024, 2),  # convertir a KB y redondear a 2 decimales
+                'size': round(file.size / 1024, 2),  # convertir a KB y redondear a 2 decimales
                 'checksum' : sha256
             })
         request.session['file_data'] = file_data
@@ -126,7 +126,7 @@ def myfiles(request):
     print(data_lotes)
 
     # Renderizar la plantilla myfiles.html y pasar los detalles del lote de archivos PDF como contexto
-    return render(request, 'myfiles.html',{'lotes': data_lotes})
+    return render(request, 'myfiles.html',{'data': json.loads(json.dumps(data_lotes)),'batches': batches})
 
 def upload_view_urls(request):
     client = Client('http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl')
@@ -147,7 +147,7 @@ def upload_view_urls(request):
                 'base64': url.strip(),
                 'fileName': "",
                 'fileExtension': "URL",
-                'Size': 1,
+                'size': 1,
                 'checksum': ""
             })
 
