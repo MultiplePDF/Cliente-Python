@@ -45,7 +45,7 @@ def uploadFiles(request):
         form = FileForm()
         message = ''
     files = File.objects.all()
-    return render(request, 'UploadFiles.html', {'form': form, 'files1': files, 'message': message})
+    return render(request, 'upload-files.html', {'form': form, 'files1': files, 'message': message})
 
 
 def upload_view(request):
@@ -79,7 +79,7 @@ def upload_view(request):
         linkDownload = response['downloadPath']
         print(linkDownload)
         if response['successful']:
-            return render(request, 'Downloads.html', {'linkDownload': linkDownload})
+            return render(request, 'downloads.html', {'linkDownload': linkDownload})
         else:
             return JsonResponse({'error': 'Error al enviar el batch'})
 
@@ -101,7 +101,7 @@ def json_template_view(request):
         json_data = {'files': file_data}
     else:
         json_data = {'Error': 'No se encontró ningún archivo cargado.'}
-    return render(request, 'ShowJson.html', {'json_data': json_data})
+    return render(request, 'show-json.html', {'json_data': json_data})
 
 def myfiles(request):
     access_token = request.session.get('token')
@@ -128,7 +128,7 @@ def myfiles(request):
     #print(data_lotes)
 
     # Renderizar la plantilla myfiles.html y pasar los detalles del lote de archivos PDF como contexto
-    return render(request, 'myfiles.html',{'data': json.loads(json.dumps(data_lotes)),'batches': data_lotes_details})
+    return render(request, 'my-files.html', {'data': json.loads(json.dumps(data_lotes)), 'batches': data_lotes_details})
 
 def upload_view_urls(request):
     client = Client('http://java.bucaramanga.upb.edu.co/ws/multiplepdf.wsdl')
@@ -158,7 +158,7 @@ def upload_view_urls(request):
         linkDownload = response['downloadPath']
         #print(linkDownload)
         if response['successful']:
-            return render(request, 'Downloads.html', {'linkDownload': linkDownload})
+            return render(request, 'downloads.html', {'linkDownload': linkDownload})
         else:
             return JsonResponse({'error': 'Error al enviar el batch'})
     else:
@@ -173,11 +173,11 @@ def batch_details(request, id_batch):
     if batch:
         # Si se encontró el lote, obtener los archivos y pasarlos como contexto a la plantilla
         files = batch['Files']
-        return render(request, 'myFilesDetails.html', {'files': files})
+        return render(request, 'my-files-details.html', {'files': files})
     else:
         # Si no se encontró el lote, mostrar un mensaje de error
         message = f"No se encontró ningún lote con el ID {id_batch}."
-        return render(request, 'myFilesDetails.html', {'message': message})
+        return render(request, 'my-files-details.html', {'message': message})
 
 
 

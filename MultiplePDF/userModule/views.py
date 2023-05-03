@@ -92,7 +92,7 @@ def registerMPDF(request):
 
 
 
-    return render(request, 'SignUp.html')
+    return render(request, 'sign-up.html')
 
 def loginMPDF(request):
     if request.method == 'POST':
@@ -112,9 +112,9 @@ def loginMPDF(request):
         else:
             # Si la autenticación falla, mostrar un mensaje de error en el formulario
             error_message = 'Correo electrónico o contraseña incorrectos'
-            return render(request, 'SignIn.html', {'error_message': error_message})
+            return render(request, 'sign-in.html', {'error_message': error_message})
     else:
-        return render(request, 'SignIn.html')
+        return render(request, 'sign-in.html')
 
 
 def logout_view(request):
