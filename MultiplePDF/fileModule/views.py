@@ -72,8 +72,6 @@ def upload_view(request):
                 'checksum' : sha256
             })
         #request.session['file_data'] = file_data
-        with open('file_data.txt', 'w') as f:
-            json.dump(file_data, f)
         response = client.service.sendBatch(json.dumps(file_data,ensure_ascii=False),access_token)
         print(response)
         linkDownload = response['downloadPath']
