@@ -72,6 +72,8 @@ def upload_view(request):
                 'checksum' : sha256
             })
         #request.session['file_data'] = file_data
+        with open('file_data.txt', 'w') as f:
+            json.dump(file_data, f)
         response = client.service.sendBatch(json.dumps(file_data,ensure_ascii=False),access_token)
         print(response)
         linkDownload = response['downloadPath']
@@ -120,9 +122,9 @@ def myfiles(request):
     request.session['data_lotes_details'] = data_lotes_details
     data_lotes = [{'id': i + 1, 'date': batch['createdAt'], 'numberFiles': batch['numberFiles'],
                    'expirationDate': batch['validity'], 'ID_Batch': batch['_id']} for i, batch in enumerate(batches)]
-    #print(data_lotes)
-    #print("*************************************")
-    #print(data_lotes_details)
+    print(data_lotes)
+    print("*************************************")
+    print(data_lotes_details)
     #print(data_lotes)
 
     # Renderizar la plantilla myfiles.html y pasar los detalles del lote de archivos PDF como contexto
