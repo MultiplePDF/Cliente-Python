@@ -87,8 +87,8 @@
             <p>Copia las URLS de las páginas que quieras convertir:<br><br> separar cada url por una coma ( , )</p>
             <form action="{% url 'updload_urls' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div>
-                    <textarea name="urls" id="urls" placeholder="Ingrese sus URLs aquí." style="width: 90%; height: 135px; overflow: auto;"></textarea>
+                <div class="form-container-border">
+                    <textarea name="urls" id="urls" placeholder="Ingrese sus URLs aquí." style="width: 98%; height: 135px;border-color: transparent; overflow: auto;"></textarea>
 
                 </div>
                 <div class="button-container">

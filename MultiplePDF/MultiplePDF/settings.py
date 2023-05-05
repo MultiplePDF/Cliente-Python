@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fp-kgcpu)s7lar_364oww3vtxpbt8-*qvjdf_s=-ewzf)0wr7(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cliente3.bucaramanga.upb.edu.co']
+ALLOWED_HOSTS = ['cliente3.bucaramanga.upb.edu.co','127.0.0.1']
 
 
 # Application definition

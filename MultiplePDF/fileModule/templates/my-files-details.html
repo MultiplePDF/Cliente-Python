@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
+ <link rel="preconnect" href="https://fonts.googleapis.com">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:medium,semibold&display=swap" rel="stylesheet">
 {% block title %}
 Detalles Archivos
 {% endblock %}
 
 {% block content %}
-  <h1>Archivos del lote {{ ID_Batch }}</h1>
+    <br>
+
+    <br>
+    <head>
+	<style>
+		th, td {
+			padding: 8px;
+			text-align: center;
+		}
+        table{
+            margin:auto;
+        }
+        </style>
+    </head>
+    <body>
+    <h1>Archivos del lote {{ ID_Batch }}</h1>
   <table>
     <thead>
       <tr>
@@ -24,5 +42,6 @@ Detalles Archivos
       {% endfor %}
     </tbody>
   </table>
+    </body>
 {% endblock %}
 {

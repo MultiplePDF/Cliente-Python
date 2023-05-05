@@ -72,6 +72,19 @@
 
 }
 
+.btn-primary{
+   background-color:#0010FF !important;
+    color: #FBF3F3 !important;
+    font-size: 16px;
+    height: 40px;
+    width: 100px;
+
+}
+.btn-primary:hover {
+    background-color: #5064CC;
+    color: #FBF3F3;
+}
+
 .btn-forgotPass{
     font-size: 16px;
     height: 10px;

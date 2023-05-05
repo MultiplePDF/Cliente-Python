@@ -6,8 +6,26 @@ Mis Archivos
 
 {% block content %}
 <!-- Aquí va el contenido específico de la página de contacto -->
+    <head>
+	<style>
+		th, td {
+			padding: 8px;
+			text-align: center;
+		}
+        table{
+            margin:auto;
+        }
+        h1{
+            font-family: 'Montserrat', sans-serif;
+        }
+	</style>
+</head>
+<body>
     <table>
+
+
 		<thead>
+
 			<tr>
 				<th>ID</th>
 				<th>Fecha</th>
@@ -27,4 +45,5 @@ Mis Archivos
 			{% endfor %}
 		</tbody>
 	</table>
+    </body>
 {% endblock %}
