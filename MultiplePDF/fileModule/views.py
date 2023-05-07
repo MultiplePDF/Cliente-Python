@@ -1,4 +1,5 @@
 import hashlib
+from datetime import datetime
 from os import path
 
 from django.http import HttpResponse, JsonResponse
@@ -118,9 +119,13 @@ def myfiles(request):
     #print(batches) #lotes[0]['files'][0]['fileName']
     data_lotes_details = [{'ID_Batch': item['_id'], 'Files': item['files']} for item in batches]
     request.session['data_lotes_details'] = data_lotes_details
-    data_lotes = [{'id': i + 1, 'date': batch['createdAt'], 'numberFiles': batch['numberFiles'],
-                   'expirationDate': batch['validity'], 'ID_Batch': batch['_id'],'Link': batch['batchPath']} for i, batch in enumerate(batches)]
-    #print(data_lotes)
+    data_lotes = [
+        {'id': i + 1, 'date': datetime.strptime(batch['createdAt'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%d'),
+         'numberFiles': batch['numberFiles'],
+         'expirationDate': batch['validity'], 'ID_Batch': batch['_id'], 'Link': batch['batchPath']} for i, batch in
+        enumerate(batches)]
+    data_lotes = sorted(data_lotes, key=lambda x: x['date'], reverse=True)  # Ordenar por fecha en orden descendente
+
     print("*************************************")
     print(data_lotes_details)
     #print(batch_details)

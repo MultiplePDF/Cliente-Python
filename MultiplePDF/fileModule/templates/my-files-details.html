@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
  <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,13 +29,14 @@ Detalles Archivos
         </style>
     </head>
     <body>
-    <h1>Archivos del lote {{ ID_Batch }}</h1>
-    <br>
-  <table>
+    <div class="table-responsive">
+
+  <table class="table">
     <thead>
       <tr>
         <th>Nombre</th>
         <th style="width: 100px;">Tamaño</th>
+        <th>Descargar</th>
 
       </tr>
     </thead>
@@ -43,11 +45,13 @@ Detalles Archivos
         <tr>
           <td>{{ file.fileName }}</td>
           <td>{{ file.size }} KB</td>
-          <td><a href="{{ file.filePath }}" class="btn btn-primary">Descargar</a></td>
+          <td><a href="{{ file.filePath }}" ><img src="{% static 'assets/img/downloads.png' %}" width="30px"/></a></td>
+
         </tr>
       {% endfor %}
     </tbody>
   </table>
+    </div>
     </body>
 {% endblock %}
 {

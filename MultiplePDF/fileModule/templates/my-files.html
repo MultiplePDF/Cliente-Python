@@ -38,8 +38,10 @@ Mis Archivos
 					<td>{{ item.date }}</td>
 					<td>{{ item.numberFiles }}</td>
 					<td>{{ item.expirationDate }}</td>
-                    <td><a href="{% url 'batch_details' id_batch=item.ID_Batch %}" > <img src="{% static 'assets/img/folder.png' %}" width="30px"/></a>
-                        <a href='{{item.Link}}' > <img src="{% static 'assets/img/downloads.png' %} " width="30px"/></a></td>
+                    <td>
+                        <a href="{% url 'batch_details' id_batch=item.ID_Batch %}" > <img src="{% static 'assets/img/folder.png' %}" width="30px"/></a>
+                        <a href='{{item.Link}}' > <img src="{% static 'assets/img/downloads.png' %}" width="30px"/></a>
+                    </td>
 
 				</tr>
 			{% endfor %}
