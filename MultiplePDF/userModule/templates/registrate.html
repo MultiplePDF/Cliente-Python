@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets\bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets\css/navbar-right-links-icons.css' %}">
     <!--Stylesheet-->
     <style media="screen">
       *,
@@ -102,7 +104,7 @@ input{
 button{
     margin-top: 14px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #0010ff;
     color: #080710;
     padding: 15px 0;
     font-size: 18px;
@@ -163,7 +165,12 @@ button{
         <button type="submit">Registrarse</button>
 
         <a href="{% url 'Login' %}" >Ya tengo una cuenta</a>
+
     </form>
+
+    <script src="{% static 'assets\bootstrap/js/bootstrap.min.js' %}"></script>
+    </div>
 {% endblock content %}
+
 </body>
 </html>
