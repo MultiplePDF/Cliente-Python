@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
 Mis Archivos
 {% endblock %}
@@ -7,21 +7,18 @@ Mis Archivos
 {% block content %}
 <!-- Aquí va el contenido específico de la página de contacto -->
     <head>
-	<style>
+    <style>
 		th, td {
-			padding: 8px;
 			text-align: center;
-		}
-        table{
-            margin:auto;
-        }
-        h1{
             font-family: 'Montserrat', sans-serif;
-        }
+		}
+
 	</style>
+
 </head>
 <body>
-    <table>
+     <div class="table-responsive">
+    <table class="table">
 
 
 		<thead>
@@ -31,6 +28,7 @@ Mis Archivos
 				<th>Fecha</th>
 				<th>Número de archivos</th>
 				<th>Fecha de expiración</th>
+                <th>Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,10 +38,13 @@ Mis Archivos
 					<td>{{ item.date }}</td>
 					<td>{{ item.numberFiles }}</td>
 					<td>{{ item.expirationDate }}</td>
-                    <td><a href="{% url 'batch_details' id_batch=item.ID_Batch %}" class="btn btn-primary">Detalles</a></td>
+                    <td><a href="{% url 'batch_details' id_batch=item.ID_Batch %}" > <img src="{% static 'assets/img/folder.png' %}" width="30px"/></a>
+                        <a href='{{item.Link}}' > <img src="{% static 'assets/img/downloads.png' %} " width="30px"/></a></td>
+
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
+     </div>
     </body>
 {% endblock %}

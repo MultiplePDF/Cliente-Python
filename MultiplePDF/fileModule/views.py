@@ -119,11 +119,11 @@ def myfiles(request):
     data_lotes_details = [{'ID_Batch': item['_id'], 'Files': item['files']} for item in batches]
     request.session['data_lotes_details'] = data_lotes_details
     data_lotes = [{'id': i + 1, 'date': batch['createdAt'], 'numberFiles': batch['numberFiles'],
-                   'expirationDate': batch['validity'], 'ID_Batch': batch['_id']} for i, batch in enumerate(batches)]
-    print(data_lotes)
+                   'expirationDate': batch['validity'], 'ID_Batch': batch['_id'],'Link': batch['batchPath']} for i, batch in enumerate(batches)]
+    #print(data_lotes)
     print("*************************************")
     print(data_lotes_details)
-    #print(data_lotes)
+    #print(batch_details)
 
     # Renderizar la plantilla myfiles.html y pasar los detalles del lote de archivos PDF como contexto
     return render(request, 'my-files.html', {'data': json.loads(json.dumps(data_lotes)), 'batches': data_lotes_details})
@@ -176,6 +176,7 @@ def batch_details(request, id_batch):
         # Si no se encontró el lote, mostrar un mensaje de error
         message = f"No se encontró ningún lote con el ID {id_batch}."
         return render(request, 'my-files-details.html', {'message': message})
+
 
 
 
