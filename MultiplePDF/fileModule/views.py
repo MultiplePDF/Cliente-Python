@@ -61,13 +61,15 @@ def upload_view(request):
         for i, file in enumerate(files):
             archivo = file.read()
             file_extension = path.splitext(file.name)[1]
+            file_name = path.splitext(file.name)[0]
+            print(file_name)
             #content = base64.b64encode().decode()
             sha256 = hashlib.sha256(archivo).hexdigest()
 
             file_data.append({
                 'idFile': i + 1,
                 'base64': base64.b64encode(archivo).decode(),
-                'fileName': file.name,
+                'fileName': file_name,
                 'fileExtension': file_extension,
                 'size': round(file.size / 1024, 2),  # convertir a KB y redondear a 2 decimales
                 'checksum' : sha256
